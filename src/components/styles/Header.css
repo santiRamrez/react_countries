@@ -1,17 +1,19 @@
 .Header {
+  z-index: 3;
+  font-size: 16px;
   width: 100%;
   height: 10vh;
-  max-height: 90px;
+  max-height: 5.625em;
   color: white;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  background-color: transparent;
 }
-
 .Logo {
-  width: 500px;
+  width: 18.75em;
   height: 100%;
   padding: 5px;
   display: flex;
@@ -20,22 +22,33 @@
   justify-content: flex-start;
   align-items: center;
   margin-left: 1vw;
+  text-decoration: none;
 }
 .Logo .container-svg {
-  width: 50px;
-  height: 50px;
+  width: 3.125em;
+  height: 3.125em;
 }
 .Logo .container-svg img {
   width: 100%;
 }
 .Logo h1 {
-  font-size: 26px;
-  margin-left: 7px;
+  font-size: 1.625em;
+  margin-left: 0.4375em;
+  color: #fff;
 }
 
 .Navbar {
-  width: 500px;
+  width: 200px;
   height: 100%;
-  background-color: blue;
   margin-right: 1vw;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.Navbar a {
+  text-decoration: none;
+  color: #fff;
+  cursor: pointer;
 }

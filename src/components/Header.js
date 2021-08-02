@@ -12,7 +12,12 @@ function Header() {
   return (
     <div className="Header">
       <Logo title="Country Data 2.0" theLogo={theLogo} />
-      <Navbar />
+      <Navbar
+        title1="Show Charts"
+        link1="https://tecnolatam.cl/"
+        title2="About"
+        link2="https://tecnolatam.cl/"
+      />
     </div>
   );
 }

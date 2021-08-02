@@ -2,12 +2,12 @@ import React from "react";
 
 function Logo({ title, theLogo }) {
   return (
-    <div className="Logo">
+    <a href="/" className="Logo">
       <div className="container-svg">
         <img src={theLogo} alt="country logo" />
       </div>
       <h1>{title}</h1>
-    </div>
+    </a>
   );
 }
 

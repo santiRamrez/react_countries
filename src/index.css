@@ -10,3 +10,16 @@ body {
   font-family: "Ubuntu", sans-serif;
   color: #fff;
 }
+
+.img-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-image: url(./assets/images/world-map.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+  z-index: -1;
+}

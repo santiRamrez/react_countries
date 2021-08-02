@@ -3,20 +3,6 @@
   width: 100%;
   height: 100vh;
   max-width: var(--max-width);
-  background-image: url(./assets/images/world-map.jpg);
-  background-repeat: no-repeat;
-  background-position: 0 -20px;
-  background-size: cover;
   position: relative;
-}
-.App::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  max-width: 1600px;
-  background-color: rgba(110, 50, 50, 0.1);
+  margin: 0 auto;
 }
