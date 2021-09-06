@@ -2,6 +2,18 @@ import React from "react";
 import "./styles/Autocomplete.css";
 
 class Autocomplete extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      userInput: "",
+    };
+    this.userInputHandler = this.userInputHandler.bind(this);
+  }
+  userInputHandler(e) {
+    this.setState({
+      userInput: e.target.value.toLowerCase(),
+    });
+  }
   render() {
     return (
       <form className="auto-form">
@@ -9,11 +21,13 @@ class Autocomplete extends React.Component {
           <input
             id="userInput"
             type="text"
-            name="toServer"
+            onChange={this.userInputHandler}
             placeholder="Country"
           />
         </div>
-        <button type="submit">Enviar</button>
+        <div className="cont-btn">
+          <button type="submit">Search</button>
+        </div>
       </form>
     );
   }
