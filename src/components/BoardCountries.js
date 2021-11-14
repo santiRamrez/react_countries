@@ -44,11 +44,11 @@ class BoardCountries extends React.Component {
       <div className="board-countries">
         {this.state.data.map((country, i) => (
           <CountryCard
-            title={country.name}
-            flag={country.flag}
+            title={country.name.common}
+            flag={country.flags.svg}
             key={i}
             //xLink -> United States => united_states (with no spaces at the beggining and at the end)
-            xLink={country.name.toLowerCase().replace(/\s/, "_").trim()}
+            xLink={country.name.common.toLowerCase().replace(/\s/, "_").trim()}
           />
         ))}
 

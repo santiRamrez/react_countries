@@ -1,5 +1,5 @@
-const API = "https://restcountries.eu/rest/v2/lang/es";
-const APICOUNTRY = "https://restcountries.eu/rest/v2/name/";
+const API = "https://restcountries.com/v3.1/region/ame";
+const APICOUNTRY = "https://restcountries.com/v3.1/region/ame";
 
 const getData = async (id) => {
   let apiURl = id ? APICOUNTRY + id : API;

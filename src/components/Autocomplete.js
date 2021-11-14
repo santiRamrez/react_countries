@@ -5,18 +5,27 @@ import ReactHtmlParser from "react-html-parser";
 import DataAutocomplete from "../utils/DataAutocomplete";
 import "./styles/Autocomplete.css";
 
-const ResultsAutocomplete = ({ text, handleClick }) => {
-  return (
-    <li onClick={handleClick} className="result-autocomplete">
-      {text}
-    </li>
-  );
-};
+class ResultsAutocomplete extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selected: null,
+    };
+  }
+  render() {
+    return (
+      <li onClick={this.props.handleClick} className="result-autocomplete">
+        {this.props.text}
+      </li>
+    );
+  }
+}
 
 class Autocomplete extends React.Component {
   constructor(props) {
     super(props);
     this.items = [];
+    this.colorResult = -1;
     this.state = {
       userInput: "",
       suggestions: [],
@@ -58,15 +67,16 @@ class Autocomplete extends React.Component {
   onClickResults = (e) => {
     const $input = document.querySelector("#userInput");
     let val = e.target.textContent;
+    $input.value = val;
     this.setState({
       formatedSuggestions: [],
     });
-    $input.value = val;
   };
 
   renderSuggestions = () => {
     const { formatedSuggestions } = this.state;
     if (formatedSuggestions.length === 0) return null;
+
     return (
       <ul className="cont-results-autocomplete">
         {this.state.formatedSuggestions.map((item, i) => (
@@ -79,11 +89,29 @@ class Autocomplete extends React.Component {
       </ul>
     );
   };
+
+  handleUpDownArrowKeys = (e) => {
+    // let trackColor = this.colorResult;
+    // //On arrow key down
+    // if (e.which === 40) {
+    //   this.colorResult++;
+    // }
+  };
+
+  cleanSuggestions = () => {
+    this.setState({
+      formatedSuggestions: [],
+      suggestions: [],
+    });
+  };
   render() {
     return (
       <form className="auto-form">
         <div className="autocomplete">
           <input
+            onBlur={this.cleanSuggestions}
+            autoComplete="off"
+            onKeyDown={(e) => this.handleUpDownArrowKeys(e)}
             id="userInput"
             type="text"
             onChange={this.onTextChanged}

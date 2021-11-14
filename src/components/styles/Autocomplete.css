@@ -30,7 +30,7 @@
 .autocomplete input {
   color: #000;
   background-color: #f4f4f4;
-  border: 2px solid #f4f4f4;
+  border: 3px solid #f4f4f4;
   padding: 0.4375em;
   padding-left: 10px;
   font-size: 1em;
@@ -43,6 +43,7 @@
 
 .autocomplete input:focus {
   border: 3px solid #0071bc;
+  border-bottom: 1.5px solid #ccc;
 }
 
 .cont-btn button {
@@ -79,6 +80,10 @@
   border-right: 1px solid #f4f4f4;
   overflow: hidden;
 }
+.autocomplete input:focus + .cont-results-autocomplete {
+  border: 3px solid #0071bc;
+  border-top: 1.5px solid #ccc;
+}
 .result-autocomplete {
   background-color: #f4f4f4;
   color: #000;
@@ -88,4 +93,9 @@
 .result-autocomplete:hover {
   background-color: #ccc;
   cursor: pointer;
+}
+
+.active {
+  background-color: dodgerblue;
+  color: #fff;
 }
