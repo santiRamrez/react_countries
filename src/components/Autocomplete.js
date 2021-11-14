@@ -91,11 +91,14 @@ class Autocomplete extends React.Component {
   };
 
   cleanSuggestions = () => {
-    this.setState({
-      formatedSuggestions: [],
-      suggestions: [],
-    });
+    setTimeout(() => {
+      this.setState({
+        formatedSuggestions: [],
+        suggestions: [],
+      });
+    }, 80);
   };
+
   render() {
     return (
       <form className="auto-form">
