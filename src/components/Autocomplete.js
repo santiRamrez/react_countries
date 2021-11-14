@@ -5,21 +5,13 @@ import ReactHtmlParser from "react-html-parser";
 import DataAutocomplete from "../utils/DataAutocomplete";
 import "./styles/Autocomplete.css";
 
-class ResultsAutocomplete extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selected: null,
-    };
-  }
-  render() {
-    return (
-      <li onClick={this.props.handleClick} className="result-autocomplete">
-        {this.props.text}
-      </li>
-    );
-  }
-}
+const ResultsAutocomplete = ({ handleClick, text }) => {
+  return (
+    <li onClick={handleClick} className="result-autocomplete">
+      {text}
+    </li>
+  );
+};
 
 class Autocomplete extends React.Component {
   constructor(props) {
