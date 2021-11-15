@@ -30,7 +30,7 @@
 .autocomplete input {
   color: #000;
   background-color: #f4f4f4;
-  border: 3px solid #f4f4f4;
+  border: 3px solid transparent;
   padding: 0.4375em;
   padding-left: 10px;
   font-size: 1em;

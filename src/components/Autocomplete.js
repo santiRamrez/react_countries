@@ -25,12 +25,10 @@ class Autocomplete extends React.Component {
     };
   }
   componentDidMount() {
-    this.fill_Items();
+    //this.props.countryList -> [[Mexico], [Venezuela]...]
+    let countryNames = this.props.countryList.map((arr) => arr[0]);
+    this.items = [...countryNames];
   }
-  fill_Items = async () => {
-    let data = await DataAutocomplete();
-    this.items = data;
-  };
   onTextChanged = (e) => {
     const input = e.target.value;
     let suggestions = [];
@@ -96,7 +94,7 @@ class Autocomplete extends React.Component {
         formatedSuggestions: [],
         suggestions: [],
       });
-    }, 80);
+    }, 100);
   };
 
   render() {

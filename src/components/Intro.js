@@ -7,11 +7,11 @@ import "./styles/Autocomplete.css";
 //Components
 import Autocomplete from "./Autocomplete";
 
-function Intro({ intro }) {
+function Intro({ intro, dataAutocomplete }) {
   return (
     <div className="intro-container">
       <h2>{intro}</h2>
-      <Autocomplete />
+      <Autocomplete countryList={dataAutocomplete} />
     </div>
   );
 }
