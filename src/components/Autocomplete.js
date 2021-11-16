@@ -2,7 +2,6 @@ import React from "react";
 //This allows me to use functions similar to innerHTML in plain JS
 import ReactHtmlParser from "react-html-parser";
 
-import DataAutocomplete from "../utils/DataAutocomplete";
 import "./styles/Autocomplete.css";
 
 const ResultsAutocomplete = ({ handleClick, text }) => {
@@ -25,10 +24,9 @@ class Autocomplete extends React.Component {
     };
   }
   componentDidMount() {
-    //this.props.countryList -> [[Mexico], [Venezuela]...]
-    let countryNames = this.props.countryList.map((arr) => arr[0]);
-    this.items = [...countryNames];
+    this.items = this.props.countryList;
   }
+
   onTextChanged = (e) => {
     const input = e.target.value;
     let suggestions = [];
@@ -99,7 +97,7 @@ class Autocomplete extends React.Component {
 
   render() {
     return (
-      <form className="auto-form">
+      <form className="auto-form" style={{ fontSize: this.props.size }}>
         <div className="autocomplete">
           <input
             onBlur={this.cleanSuggestions}

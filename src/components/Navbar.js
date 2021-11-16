@@ -1,14 +1,12 @@
 import React from "react";
+//React-router
+import { Link } from "react-router-dom";
 
 function Navbar({ title1, link1, title2, link2 }) {
   return (
     <nav className="Navbar">
-      <a href={link1} rel="noreferrer" target="_blank">
-        {title1}
-      </a>
-      <a href={link2} rel="noreferrer" target="_blank">
-        {title2}
-      </a>
+      <Link to={link1}>{title1}</Link>
+      <Link to={link2}>{title2}</Link>
     </nav>
   );
 }

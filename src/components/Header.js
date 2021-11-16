@@ -14,9 +14,9 @@ function Header() {
       <Logo title="Country Data 2.0" theLogo={theLogo} />
       <Navbar
         title1="Show Charts"
-        link1="https://tecnolatam.cl/"
+        link1="/charts"
         title2="About"
-        link2="https://tecnolatam.cl/"
+        link2="/about"
       />
     </div>
   );

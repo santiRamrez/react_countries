@@ -13,15 +13,15 @@ function Home({ dataCountries }) {
     // output -> [countryName, flag, link]
     return output;
   });
-  const onlyCountries = mainData.map((obj) => {
+  const justNames = (arr) => {
     let output = [];
-    output.push(obj.name.common);
+    arr.forEach((obj) => output.push(obj.name.common));
     return output;
-  });
+  };
   return (
     <div className="Home-page">
       <Intro
-        dataAutocomplete={onlyCountries}
+        dataAutocomplete={justNames(mainData)}
         intro="Search for a country's data"
       />
       <BoardCountries dataCountryCards={filterData} />

@@ -1,0 +1,12 @@
+.CountriesSelected {
+  border: 1px solid red;
+  font-size: 16px;
+  width: 80%;
+  max-width: 65em;
+  height: 2.5em;
+  padding: 0.5em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+}
