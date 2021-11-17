@@ -23,9 +23,10 @@ class Autocomplete extends React.Component {
       formatedSuggestions: [],
     };
   }
-  componentDidMount() {
-    this.items = this.props.countryList;
-  }
+  // componentDidMount() {
+  //   this.items = this.props.countryList;
+  //   console.log(this.items);
+  // }
 
   onTextChanged = (e) => {
     const input = e.target.value;
@@ -97,9 +98,10 @@ class Autocomplete extends React.Component {
 
   render() {
     return (
-      <form className="auto-form" style={{ fontSize: this.props.size }}>
+      <div className="auto-form" style={{ fontSize: this.props.size }}>
         <div className="autocomplete">
           <input
+            onFocus={() => (this.items = this.props.countryList)}
             onBlur={this.cleanSuggestions}
             autoComplete="off"
             onKeyDown={(e) => this.handleUpDownArrowKeys(e)}
@@ -113,7 +115,7 @@ class Autocomplete extends React.Component {
         <div className="cont-btn">
           <button type="submit">Search</button>
         </div>
-      </form>
+      </div>
     );
   }
 }

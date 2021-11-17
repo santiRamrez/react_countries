@@ -10,3 +10,10 @@
   justify-content: flex-start;
   align-items: center;
 }
+.CountriesSelected p {
+  padding: 0.2em 0.6em;
+  border-radius: 0.2em;
+  background-color: #ffffff;
+  color: #303030;
+  margin-left: 0.8em;
+}
