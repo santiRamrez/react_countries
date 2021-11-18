@@ -17,7 +17,7 @@ function Charts({ dataAutocomplete }) {
         </div>
         <div className="mainSection-container">
           <CountriesSelected />
-          <TheChart />
+          <TheChart showData={data} />
         </div>
       </div>
     </div>

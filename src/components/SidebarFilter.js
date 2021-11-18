@@ -17,16 +17,16 @@ const SidebarFilter = ({ listCountries }) => {
       </div>
       <div className="compareSection">
         <div className="check-container">
-          <input id="people" type="checkbox" />
+          <input id="people" type="radio" name="parameter" value="population" />
           <label htmlFor="people">Population</label>
         </div>
         <div className="check-container">
-          <input id="area" type="checkbox" />
+          <input id="area" type="radio" name="parameter" value="area" />
           <label htmlFor="area">Area</label>
         </div>
         <div className="check-container">
-          <input id="currency" type="checkbox" />
-          <label htmlFor="currency">Currency</label>
+          <input id="currency" type="radio" name="parameter" value="salary" />
+          <label htmlFor="currency">Minimum Wage</label>
         </div>
       </div>
     </form>

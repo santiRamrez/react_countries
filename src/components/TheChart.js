@@ -1,91 +1,50 @@
 import React from "react";
+import { Bar } from "react-chartjs-2";
 import "./styles/TheChart.css";
 
-// //To use an external library, in this case Chart.js
-// import ScriptTag from "react-script-tag";
-
-import {
-  Chart,
-  ArcElement,
-  LineElement,
-  BarElement,
-  PointElement,
-  BarController,
-  BubbleController,
-  DoughnutController,
-  LineController,
-  PieController,
-  PolarAreaController,
-  RadarController,
-  ScatterController,
-  CategoryScale,
-  LinearScale,
-  LogarithmicScale,
-  RadialLinearScale,
-  TimeScale,
-  TimeSeriesScale,
-  Decimation,
-  Filler,
-  Legend,
-  Title,
-  Tooltip,
-  SubTitle,
-} from "chart.js";
-
-Chart.register(
-  ArcElement,
-  LineElement,
-  BarElement,
-  PointElement,
-  BarController,
-  BubbleController,
-  DoughnutController,
-  LineController,
-  PieController,
-  PolarAreaController,
-  RadarController,
-  ScatterController,
-  CategoryScale,
-  LinearScale,
-  LogarithmicScale,
-  RadialLinearScale,
-  TimeScale,
-  TimeSeriesScale,
-  Decimation,
-  Filler,
-  Legend,
-  Title,
-  Tooltip,
-  SubTitle
-);
-
 //Component here!!
-const TheChart = () => {
-  //Data to display within the chart
-  const labels = ["January", "February", "March", "April", "May", "June"];
+const TheChart = ({ showData }) => {
   const data = {
-    labels: labels,
+    //data and labels are related as the index position into the array
+    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
     datasets: [
       {
-        label: "My First dataset",
-        backgroundColor: "rgb(255, 99, 132)",
-        borderColor: "rgb(255, 99, 132)",
-        data: [0, 10, 5, 2, 20, 30, 45],
+        label: "# of Votes",
+        data: [12, 19, 3, 5, 2, 3],
+        backgroundColor: [
+          "rgba(255, 99, 132, 0.2)",
+          "rgba(54, 162, 235, 0.2)",
+          "rgba(255, 206, 86, 0.2)",
+          "rgba(75, 192, 192, 0.2)",
+          "rgba(153, 102, 255, 0.2)",
+          "rgba(255, 159, 64, 0.2)",
+        ],
+        borderColor: [
+          "rgba(255, 99, 132, 1)",
+          "rgba(54, 162, 235, 1)",
+          "rgba(255, 206, 86, 1)",
+          "rgba(75, 192, 192, 1)",
+          "rgba(153, 102, 255, 1)",
+          "rgba(255, 159, 64, 1)",
+        ],
+        borderWidth: 1,
       },
     ],
   };
-  //Configuration Chart js
-  const config = {
-    type: "line",
-    data: data,
-    options: {},
+  const options = {
+    scales: {
+      yAxes: [
+        {
+          ticks: {
+            beginAtZero: true,
+          },
+        },
+      ],
+    },
   };
-
-  const myChart = new Chart(document.getElementById("myChart"), config);
-
   return (
     <div className="theChart-container">
-      <canvas id="myChart"></canvas>
+      <Bar data={data} options={options} />
     </div>
   );
 };
