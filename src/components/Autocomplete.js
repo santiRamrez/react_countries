@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 //This allows me to use functions similar to innerHTML in plain JS
 import ReactHtmlParser from "react-html-parser";
 
@@ -12,65 +12,51 @@ const ResultsAutocomplete = ({ handleClick, text }) => {
   );
 };
 
-class Autocomplete extends React.Component {
-  constructor(props) {
-    super(props);
-    this.items = [];
-    this.colorResult = -1;
-    this.state = {
-      userInput: "",
-      suggestions: [],
-      formatedSuggestions: [],
-    };
-  }
-  // componentDidMount() {
-  //   this.items = this.props.countryList;
-  //   console.log(this.items);
-  // }
+const Autocomplete = ({ countryList, size, hasSelected = (f) => f }) => {
+  const [userInput, setUserInput] = useState("");
+  const [suggestions, setSuggestions] = useState([]);
+  const [formatedSuggestions, setFormatedSuggestions] = useState([]);
 
-  onTextChanged = (e) => {
+  const onTextChanged = (e) => {
     const input = e.target.value;
-    let suggestions = [];
-    let formatedSuggestions = [];
+    let subSuggestions = [];
+    let subFormatedSuggestions = [];
     if (input.length > 0) {
       const regex = new RegExp(`^${input}`, "i");
-      suggestions = this.items.sort().filter((val) => regex.test(val));
+      subSuggestions = countryList.sort().filter((val) => regex.test(val));
     }
 
     //Format text to make bold the letters that are being matched
-    suggestions.forEach((val, i) => {
+    subSuggestions.forEach((val, i) => {
       if (input.toLowerCase() === val.toLowerCase().substr(0, input.length)) {
         let bold = `<b>${val[0] + input.substr(1).toLowerCase()}</b>`;
         let rest = `${val.substr(input.length)}`;
         let output = bold + rest;
-        formatedSuggestions.push(ReactHtmlParser(output));
+        subFormatedSuggestions.push(ReactHtmlParser(output));
       }
     });
 
-    this.setState({
-      userInput: e.target.value,
-      suggestions,
-      formatedSuggestions,
-    });
+    setUserInput(e.target.value);
+    setSuggestions(subSuggestions);
+    setFormatedSuggestions(subFormatedSuggestions);
   };
-  onClickResults = (e) => {
+
+  const onClickResults = (e) => {
     const $input = document.querySelector("#userInput");
     let val = e.target.textContent;
     $input.value = val;
-    this.setState({
-      formatedSuggestions: [],
-    });
+    setFormatedSuggestions([]);
+    setUserInput(val);
   };
 
-  renderSuggestions = () => {
-    const { formatedSuggestions } = this.state;
+  const renderSuggestions = () => {
     if (formatedSuggestions.length === 0) return null;
 
     return (
       <ul className="cont-results-autocomplete">
-        {this.state.formatedSuggestions.map((item, i) => (
+        {formatedSuggestions.map((item, i) => (
           <ResultsAutocomplete
-            handleClick={this.onClickResults}
+            handleClick={onClickResults}
             key={i}
             text={item}
           />
@@ -79,52 +65,38 @@ class Autocomplete extends React.Component {
     );
   };
 
-  handleUpDownArrowKeys = (e) => {
-    // let trackColor = this.colorResult;
-    // //On arrow key down
-    // if (e.which === 40) {
-    //   this.colorResult++;
-    // }
-  };
-
-  cleanSuggestions = () => {
+  const cleanSuggestions = () => {
     setTimeout(() => {
-      this.setState({
-        formatedSuggestions: [],
-        suggestions: [],
-      });
+      setSuggestions([]);
+      setFormatedSuggestions([]);
     }, 500);
   };
 
-  render() {
-    return (
-      <div className="auto-form" style={{ fontSize: this.props.size }}>
-        <div className="autocomplete">
-          <input
-            onFocus={() => (this.items = this.props.countryList)}
-            onBlur={this.cleanSuggestions}
-            autoComplete="off"
-            onKeyDown={(e) => this.handleUpDownArrowKeys(e)}
-            id="userInput"
-            type="text"
-            onChange={this.onTextChanged}
-            placeholder="Country"
-          />
-          {this.renderSuggestions()}
-        </div>
-        <div className="cont-btn">
-          <button
-            onClick={(e) => {
-              e.preventDefault();
-              this.props.hasSelected(document.querySelector("input").value);
-            }}
-          >
-            Search
-          </button>
-        </div>
+  return (
+    <div className="auto-form" style={{ fontSize: size }}>
+      <div className="autocomplete">
+        <input
+          onBlur={cleanSuggestions}
+          autoComplete="off"
+          id="userInput"
+          type="text"
+          onChange={onTextChanged}
+          placeholder="Country"
+        />
+        {renderSuggestions()}
       </div>
-    );
-  }
-}
+      <div className="cont-btn">
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            hasSelected(userInput);
+          }}
+        >
+          Search
+        </button>
+      </div>
+    </div>
+  );
+};
 
 export default Autocomplete;
