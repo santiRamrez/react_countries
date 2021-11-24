@@ -1,4 +1,6 @@
 .theChart-container {
-  border: 1px solid dodgerblue;
+  border-radius: 15px;
+  padding: 1em;
   width: 800px;
+  background-color: rgba(0, 0, 0, 0.4);
 }

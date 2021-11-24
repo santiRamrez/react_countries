@@ -3,7 +3,7 @@ import "./styles/SidebarFilter.css";
 
 import Autocomplete from "../components/Autocomplete";
 
-const SidebarFilter = ({ listCountries }) => {
+const SidebarFilter = ({ listCountries, countrySelected = (f) => f }) => {
   const justNames = (arr) => {
     let output = [];
     arr.forEach((obj) => output.push(obj.name.common));
@@ -13,7 +13,11 @@ const SidebarFilter = ({ listCountries }) => {
     <form className="SidebarFilter">
       <div className="selectCountry">
         <p>Select a country</p>
-        <Autocomplete countryList={justNames(listCountries)} size={"13.5px"} />
+        <Autocomplete
+          hasSelected={countrySelected}
+          countryList={justNames(listCountries)}
+          size={"13.5px"}
+        />
       </div>
       <div className="compareSection">
         <div className="check-container">

@@ -1,10 +1,9 @@
 .SidebarFilter {
   font-size: 16px;
-  width: 20%;
   max-width: 20em;
   min-width: 18em;
   height: 37.5em;
-  border: 1px solid green;
+  /* border: 1px solid green; */
 }
 .selectCountry {
   padding: 0.2em;

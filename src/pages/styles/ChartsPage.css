@@ -1,13 +1,22 @@
+.chartPage {
+  width: 100%;
+  height: auto;
+}
 .chartPage h1 {
   text-align: center;
   font-size: 28px;
   font-weight: 400;
 }
-
 .containerComponts {
   width: 100%;
   height: 600px;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+}
+.sideBar-container {
+  width: 22%;
+}
+.mainSection-container {
+  width: 78%;
 }

@@ -7,16 +7,25 @@ import CountriesSelected from "../components/CountriesSelected";
 import TheChart from "../components/TheChart";
 
 function Charts({ dataAutocomplete }) {
-  const [data, setReload] = useState(dataAutocomplete);
+  const [data, setData] = useState([]);
+  const selectedCountries = [];
   return (
     <div className="chartPage">
       <h1>Look and Compare</h1>
       <div className="containerComponts">
         <div className="sideBar-container">
-          <SidebarFilter listCountries={dataAutocomplete} />
+          <SidebarFilter
+            countrySelected={(country) => {
+              const selectedObj = data.filter(
+                (obj) => country === obj.name.common
+              );
+              setData(selectedObj);
+            }}
+            listCountries={dataAutocomplete}
+          />
         </div>
         <div className="mainSection-container">
-          <CountriesSelected />
+          <CountriesSelected selected={selectedCountries} />
           <TheChart showData={data} />
         </div>
       </div>

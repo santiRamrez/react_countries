@@ -93,7 +93,7 @@ class Autocomplete extends React.Component {
         formatedSuggestions: [],
         suggestions: [],
       });
-    }, 100);
+    }, 500);
   };
 
   render() {
@@ -113,7 +113,14 @@ class Autocomplete extends React.Component {
           {this.renderSuggestions()}
         </div>
         <div className="cont-btn">
-          <button type="submit">Search</button>
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              this.props.hasSelected(document.querySelector("input").value);
+            }}
+          >
+            Search
+          </button>
         </div>
       </div>
     );
