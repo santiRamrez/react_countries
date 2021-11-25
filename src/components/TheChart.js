@@ -3,14 +3,19 @@ import { Bar } from "react-chartjs-2";
 import "./styles/TheChart.css";
 
 //Component here!!
-const TheChart = ({ showData }) => {
+const TheChart = ({ showData, countries = [] }) => {
+  //showData has the entire information from the API
+  //countries has the array of selected countries from the autocomplete
+  let listOfCountries = showData.map((obj) => obj.name.common);
+  let arrOfPopulation = showData.map((obj) => obj.population);
+
   const data = {
     //data and labels are related as the index position into the array
-    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+    labels: [...listOfCountries],
     datasets: [
       {
         label: "# of Votes",
-        data: [12, 19, 3, 5, 2, 3],
+        data: [...arrOfPopulation],
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",
           "rgba(54, 162, 235, 0.2)",
@@ -27,6 +32,7 @@ const TheChart = ({ showData }) => {
           "rgba(153, 102, 255, 1)",
           "rgba(255, 159, 64, 1)",
         ],
+        color: ["#f4f4f4"],
         borderWidth: 1,
       },
     ],
