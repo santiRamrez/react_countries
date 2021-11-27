@@ -1,6 +1,11 @@
 .theChart-container {
   border-radius: 15px;
   padding: 1em;
-  width: 800px;
+  /* width: 85%; */
+  width: 96%;
+  height: 400px;
+  max-width: 900px;
+  min-width: 400px;
   background-color: rgba(0, 0, 0, 0.4);
+  color: #ffffff;
 }

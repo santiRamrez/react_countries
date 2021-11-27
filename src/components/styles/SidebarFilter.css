@@ -2,23 +2,17 @@
   font-size: 16px;
   max-width: 20em;
   min-width: 18em;
-  height: 37.5em;
-  /* border: 1px solid green; */
+  height: auto;
+  padding-bottom: 1em;
 }
 .selectCountry {
-  padding: 0.2em;
-  padding-top: 1em;
   width: 100%;
-  height: 100px;
+  height: 50px;
+  padding: 0.4em;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.selectCountry p {
-  text-align: center;
-  font-size: 1em;
-  font-weight: 300;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 .compareSection {
   width: 100%;

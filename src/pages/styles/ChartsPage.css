@@ -17,7 +17,11 @@
 }
 .sideBar-container {
   width: 22%;
+  max-width: 20em;
+  min-width: 18em;
+  height: auto;
 }
 .mainSection-container {
   width: 78%;
+  padding-left: 1em;
 }
