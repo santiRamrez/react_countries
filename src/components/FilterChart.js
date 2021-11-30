@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from "react";
 
+import GetCSVData from "../utils/GetCSVData";
+import FileCSV from "../data-csv/ocde.csv";
+
 import TheChart from "./TheChart";
 
 const FilterChart = ({ data, countries, param }) => {
   const [popList, setPopList] = useState([]);
   const [areaList, setAreaList] = useState([]);
+  const [salaryData, setSalaryData] = useState([]);
+  const [salaryList, setSalaryList] = useState([]);
 
   const switchParam = (p) => {
     switch (p) {
@@ -12,6 +17,8 @@ const FilterChart = ({ data, countries, param }) => {
         return popList;
       case "Area":
         return areaList;
+      case "Salary":
+        return salaryList;
       default:
         return [];
     }
@@ -26,17 +33,28 @@ const FilterChart = ({ data, countries, param }) => {
     });
   }
 
-  // useEffect(() => {
-  //   //When the array of this hook is empty, it means -> componentDidMount() -> execute just once after rendering
-  //   alert("Thanks a lot to ChartJS developers!");
-  // }, []);
+  const putSalaryOfCountry = (c) => {
+    let output = 0;
+    salaryData.forEach((obj) => {
+      if (c === obj.country) output = obj.salary;
+    });
+    return output;
+  };
+
+  useEffect(async () => {
+    //When the array of this hook is empty, it means -> componentDidMount() -> execute just once after rendering
+    let salaryD = await GetCSVData(FileCSV);
+    setSalaryData(salaryD);
+  }, []);
 
   useEffect(() => {
-    const lastCountry = countries.slice(-1);
-    filterObjects.forEach((obj, i) => {
-      if (lastCountry[0] === obj.name.common) {
+    const lastCountry = countries.slice(-1).toString();
+
+    filterObjects.forEach((obj) => {
+      if (lastCountry === obj.name.common) {
         setPopList([...popList, obj.population]);
         setAreaList([...areaList, obj.area]);
+        setSalaryList([...salaryList, putSalaryOfCountry(lastCountry)]);
       }
     });
   }, [countries]);
@@ -47,6 +65,7 @@ const FilterChart = ({ data, countries, param }) => {
         countries={countries}
         label={param}
         dataParam={switchParam(param)}
+        param={param}
       />
     </>
   );
