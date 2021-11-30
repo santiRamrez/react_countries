@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./styles/SidebarFilter.css";
 
 import Autocomplete from "../components/Autocomplete";
@@ -9,6 +9,8 @@ const SidebarFilter = ({
   paramSelected = (f) => f,
 }) => {
   const [param, setParam] = useState("");
+
+  const inpSalary = useRef(null);
 
   const handleChange = (e) => {
     setParam(e.target.value);
@@ -63,9 +65,18 @@ const SidebarFilter = ({
             value="Salary"
             onChange={handleChange}
             onClick={paramSelected(param)}
+            ref={inpSalary}
           />
-          <label htmlFor="currency">Minimum Wage</label>
+          <label htmlFor="currency">Minimum Wage (Annual)</label>
         </div>
+      </div>
+      <div className="caption-salary-container">
+        {inpSalary.current && (
+          <p>
+            The minimum wage was taken from OCDE database as PPP (Purchasing
+            Power Parities)
+          </p>
+        )}
       </div>
     </form>
   );
