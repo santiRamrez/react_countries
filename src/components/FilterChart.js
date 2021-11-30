@@ -5,7 +5,7 @@ import FileCSV from "../data-csv/ocde.csv";
 
 import TheChart from "./TheChart";
 
-const FilterChart = ({ data, countries, param }) => {
+const FilterChart = ({ data, countries, param, deleteList }) => {
   const [popList, setPopList] = useState([]);
   const [areaList, setAreaList] = useState([]);
   const [salaryData, setSalaryData] = useState([]);
@@ -41,10 +41,13 @@ const FilterChart = ({ data, countries, param }) => {
     return output;
   };
 
-  useEffect(async () => {
+  useEffect(() => {
     //When the array of this hook is empty, it means -> componentDidMount() -> execute just once after rendering
-    let salaryD = await GetCSVData(FileCSV);
-    setSalaryData(salaryD);
+    const fetchSalaryData = async () => {
+      let salaryD = await GetCSVData(FileCSV);
+      setSalaryData(salaryD);
+    };
+    fetchSalaryData();
   }, []);
 
   useEffect(() => {
@@ -58,6 +61,23 @@ const FilterChart = ({ data, countries, param }) => {
       }
     });
   }, [countries]);
+
+  useEffect(() => {
+    if (deleteList) {
+      let newPopList = popList.filter((val, i) =>
+        deleteList.includes(i) ? false : true
+      );
+      setPopList([...newPopList]);
+      let newAreaList = areaList.filter((val, i) =>
+        deleteList.includes(i) ? false : true
+      );
+      setAreaList([...newAreaList]);
+      let newSalaryList = salaryList.filter((val, i) =>
+        deleteList.includes(i) ? false : true
+      );
+      setSalaryList([...newSalaryList]);
+    }
+  }, [deleteList]);
 
   return (
     <>

@@ -1,8 +1,15 @@
 const GetCSVData = async (file) => {
-  let resp = await fetch(file);
-  let text = await resp.text();
+  let resp, text, table;
+  try {
+    resp = await fetch(file);
+    text = await resp.text();
+  } catch (error) {
+    console.log(error);
+  }
 
-  let table = text.split("\n").slice(2);
+  if (text) {
+    table = text.split("\n").slice(2);
+  }
   // let rows = table[0].split(";");
   //Year - > rows[7]
   //Period -> rows[5]
@@ -14,6 +21,8 @@ const GetCSVData = async (file) => {
     if (eachRow[5] === "Annual" && eachRow[7] === "2020") {
       if (eachRow[2] === "PPP") {
         return true;
+      } else {
+        return false;
       }
     } else {
       return false;

@@ -7,7 +7,6 @@ import formatingNumbers from "../utils/formatingNumbers";
 
 defaults.color = "#ffffff";
 defaults.borderColor = "rgba(255, 255, 255, 0.4)";
-console.log(defaults.font);
 
 //Component here!!
 const TheChart = ({ countries = [], label = "", dataParam = [], param }) => {

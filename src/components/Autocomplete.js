@@ -44,9 +44,12 @@ const Autocomplete = ({ countryList, size, hasSelected = (f) => f }) => {
   const onClickResults = (e) => {
     const $input = document.querySelector("#userInput");
     let val = e.target.textContent;
+    $input.value = "";
     $input.value = val;
-    setFormatedSuggestions([]);
     setUserInput(val);
+    setTimeout(() => {
+      setFormatedSuggestions([]);
+    }, 500);
   };
 
   const renderSuggestions = () => {
@@ -69,7 +72,7 @@ const Autocomplete = ({ countryList, size, hasSelected = (f) => f }) => {
     setTimeout(() => {
       setSuggestions([]);
       setFormatedSuggestions([]);
-    }, 900);
+    }, 100);
   };
 
   return (
@@ -89,7 +92,11 @@ const Autocomplete = ({ countryList, size, hasSelected = (f) => f }) => {
         <button
           onClick={(e) => {
             e.preventDefault();
-            hasSelected(userInput);
+            if (countryList.includes(userInput)) {
+              hasSelected(userInput);
+            } else {
+              hasSelected("");
+            }
           }}
         >
           Search
