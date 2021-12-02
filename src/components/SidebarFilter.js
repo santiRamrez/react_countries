@@ -1,19 +1,21 @@
-import React, { useState, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import "./styles/SidebarFilter.css";
 
 import Autocomplete from "../components/Autocomplete";
+
+//Insted of using useState, I can declare a variable outside of the component
+let param = "";
 
 const SidebarFilter = ({
   listCountries,
   countrySelected = (f) => f,
   paramSelected = (f) => f,
 }) => {
-  const [param, setParam] = useState("");
-
   const inpSalary = useRef(null);
 
   const handleChange = (e) => {
-    setParam(e.target.value);
+    param = e.target.value;
+    paramSelected(param);
   };
 
   const handleSubmit = (e) => {
@@ -25,6 +27,7 @@ const SidebarFilter = ({
     arr.forEach((obj) => output.push(obj.name.common));
     return output;
   };
+
   return (
     <form onSubmit={handleSubmit} className="SidebarFilter">
       <div className="selectCountry">
@@ -42,7 +45,6 @@ const SidebarFilter = ({
             name="parameter"
             value="Population"
             onChange={handleChange}
-            onClick={paramSelected(param)}
           />
           <label htmlFor="people">Population</label>
         </div>
@@ -53,7 +55,6 @@ const SidebarFilter = ({
             name="parameter"
             value="Area"
             onChange={handleChange}
-            onClick={paramSelected(param)}
           />
           <label htmlFor="area">Area</label>
         </div>
@@ -64,7 +65,6 @@ const SidebarFilter = ({
             name="parameter"
             value="Salary"
             onChange={handleChange}
-            onClick={paramSelected(param)}
             ref={inpSalary}
           />
           <label htmlFor="currency">Minimum Wage (Annual)</label>

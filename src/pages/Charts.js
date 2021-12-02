@@ -16,6 +16,14 @@ function Charts({ dataAutocomplete }) {
     setData(dataAutocomplete);
   }, []);
 
+  useEffect(() => {
+    const lastDeletedCountry = deleteList.slice(-1).toString();
+    const toDelete = Number(lastDeletedCountry);
+    let newCountries = [...selectedCountries];
+    newCountries.splice(toDelete, 1);
+    setSelectedCountries(newCountries);
+  }, [deleteList]);
+
   return (
     <div className="chartPage">
       <h1>Look and Compare</h1>

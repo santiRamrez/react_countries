@@ -10,6 +10,7 @@ const FilterChart = ({ data, countries, param, deleteList }) => {
   const [areaList, setAreaList] = useState([]);
   const [salaryData, setSalaryData] = useState([]);
   const [salaryList, setSalaryList] = useState([]);
+  const [count, setCount] = useState(0);
 
   const switchParam = (p) => {
     switch (p) {
@@ -52,30 +53,30 @@ const FilterChart = ({ data, countries, param, deleteList }) => {
 
   useEffect(() => {
     const lastCountry = countries.slice(-1).toString();
-
-    filterObjects.forEach((obj) => {
-      if (lastCountry === obj.name.common) {
-        setPopList([...popList, obj.population]);
-        setAreaList([...areaList, obj.area]);
-        setSalaryList([...salaryList, putSalaryOfCountry(lastCountry)]);
-      }
-    });
+    console.log(count, countries.length);
+    //Add values to the different arrays
+    if (count < countries.length) {
+      console.log("country added");
+      setCount((prev) => prev + 1);
+      filterObjects.forEach((obj) => {
+        if (lastCountry === obj.name.common) {
+          setPopList([...popList, obj.population]);
+          setAreaList([...areaList, obj.area]);
+          setSalaryList([...salaryList, putSalaryOfCountry(lastCountry)]);
+        }
+      });
+    }
   }, [countries]);
 
   useEffect(() => {
-    if (deleteList) {
-      let newPopList = popList.filter((val, i) =>
-        deleteList.includes(i) ? false : true
-      );
-      setPopList([...newPopList]);
-      let newAreaList = areaList.filter((val, i) =>
-        deleteList.includes(i) ? false : true
-      );
-      setAreaList([...newAreaList]);
-      let newSalaryList = salaryList.filter((val, i) =>
-        deleteList.includes(i) ? false : true
-      );
-      setSalaryList([...newSalaryList]);
+    //Delete values to the different arrays
+    if (count > 0) {
+      setCount((prev) => prev - 1);
+      let lastIndex = deleteList.slice(-1).toString();
+      let selectedIndex = Number(lastIndex);
+      setPopList((prev) => prev.splice(selectedIndex, 1));
+      setAreaList((prev) => prev.splice(selectedIndex, 1));
+      setSalaryList((prev) => prev.splice(selectedIndex, 1));
     }
   }, [deleteList]);
 
