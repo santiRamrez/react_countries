@@ -17,11 +17,9 @@ function Charts({ dataAutocomplete }) {
   const [selectedCountries, setSelectedCountries] = useState([]);
   const [theParam, setTheParam] = useState("");
   const [salaryData, setSalaryData] = useState([]);
-  const [lists, setLists] = useState({
-    popList: [],
-    areaList: [],
-    salaryList: [],
-  });
+  const [popList, setPopList] = useState([]);
+  const [areaList, setAreaList] = useState([]);
+  const [salaryList, setSalaryList] = useState([]);
 
   const putSalaryOfCountry = (c) => {
     let output = 0;
@@ -39,6 +37,14 @@ function Charts({ dataAutocomplete }) {
       setSalaryData(salaryD);
     };
     fetchSalaryData();
+
+    setFilterData(() => {
+      let output = data.filter((obj) => {
+        let country = obj.name.common;
+        return selectedCountries.includes(country);
+      });
+      return output;
+    });
   }, []);
 
   useEffect(() => {
@@ -52,16 +58,16 @@ function Charts({ dataAutocomplete }) {
 
   useEffect(() => {
     const lastCountry = selectedCountries.slice(-1).toString();
-    if (data) {
-      setFilterData((prev) => {
-        let output = data.filter((obj) => {
-          let country = obj.name.common;
-          return selectedCountries.includes(country);
-        });
-        return output;
-      });
-    }
+
     //Add values to the different arrays
+    filterData.forEach((obj) => {
+      if (lastCountry === obj.name.common) {
+        console.log("Executed");
+        setPopList([...popList, obj.population]);
+        setAreaList([...areaList, obj.area]);
+        setSalaryList([...salaryList, putSalaryOfCountry(lastCountry)]);
+      }
+    });
   }, [selectedCountries]);
 
   return (
