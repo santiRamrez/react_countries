@@ -6,23 +6,63 @@ import SidebarFilter from "../components/SidebarFilter";
 import CountriesSelected from "../components/CountriesSelected";
 import FilterChart from "../components/FilterChart";
 
+//CSV DATA:
+import GetCSVData from "../utils/GetCSVData";
+import FileCSV from "../data-csv/ocde.csv";
+
 function Charts({ dataAutocomplete }) {
+  const [toDelete, setToDelete] = useState("");
   const [data, setData] = useState([]);
+  const [filterData, setFilterData] = useState([]);
   const [selectedCountries, setSelectedCountries] = useState([]);
   const [theParam, setTheParam] = useState("");
-  const [deleteList, setDeleteList] = useState("");
+  const [salaryData, setSalaryData] = useState([]);
+  const [lists, setLists] = useState({
+    popList: [],
+    areaList: [],
+    salaryList: [],
+  });
+
+  const putSalaryOfCountry = (c) => {
+    let output = 0;
+    salaryData.forEach((obj) => {
+      if (c === obj.country) output = obj.salary;
+    });
+    return output;
+  };
 
   useEffect(() => {
     setData(dataAutocomplete);
+
+    const fetchSalaryData = async () => {
+      let salaryD = await GetCSVData(FileCSV);
+      setSalaryData(salaryD);
+    };
+    fetchSalaryData();
   }, []);
 
   useEffect(() => {
-    const lastDeletedCountry = deleteList.slice(-1).toString();
-    const toDelete = Number(lastDeletedCountry);
-    let newCountries = [...selectedCountries];
-    newCountries.splice(toDelete, 1);
+    if (toDelete === "") return;
+    let deletingNumber = Number(toDelete);
+    let newCountries = selectedCountries.filter((c, i) =>
+      deletingNumber === i ? false : true
+    );
     setSelectedCountries(newCountries);
-  }, [deleteList]);
+  }, [toDelete]);
+
+  useEffect(() => {
+    const lastCountry = selectedCountries.slice(-1).toString();
+    if (data) {
+      setFilterData((prev) => {
+        let output = data.filter((obj) => {
+          let country = obj.name.common;
+          return selectedCountries.includes(country);
+        });
+        return output;
+      });
+    }
+    //Add values to the different arrays
+  }, [selectedCountries]);
 
   return (
     <div className="chartPage">
@@ -44,17 +84,15 @@ function Charts({ dataAutocomplete }) {
         <div className="mainSection-container">
           <CountriesSelected
             selected={selectedCountries}
-            indexes={(index) =>
-              deleteList.includes(index)
-                ? setDeleteList(deleteList)
-                : setDeleteList([...deleteList, index])
-            }
+            indexes={(index) => {
+              setToDelete(index);
+              setTimeout(() => setToDelete(""), 2000);
+            }}
           />
           <FilterChart
             data={data}
             countries={selectedCountries}
             param={theParam}
-            deleteList={deleteList}
           />
         </div>
       </div>
