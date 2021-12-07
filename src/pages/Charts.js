@@ -41,47 +41,39 @@ function Charts({ dataAutocomplete }) {
   useEffect(() => {
     if (toDelete === "") return;
     let deletingNumber = Number(toDelete);
-    let newCountries = selectedCountries.filter((c, i) =>
-      deletingNumber === i ? false : true
+    setSelectedCountries((prev) =>
+      prev.filter((_, i) => (deletingNumber === i ? false : true))
     );
-    setSelectedCountries(newCountries);
-
-    setPopList((prev) => {
-      let output = prev.filter((val, i) =>
-        i === deletingNumber ? false : true
-      );
-      console.log("EXECUTED");
-      return output;
-    });
-    setAreaList((prev) => {
-      let output = prev.filter((val, i) =>
-        i === deletingNumber ? false : true
-      );
-      return output;
-    });
-    setSalaryList((prev) => {
-      let output = prev.filter((val, i) =>
-        i === deletingNumber ? false : true
-      );
-      return output;
-    });
+    setPopList((prev) =>
+      prev.filter((_, i) => (i === deletingNumber ? false : true))
+    );
+    setAreaList((prev) =>
+      prev.filter((_, i) => (i === deletingNumber ? false : true))
+    );
+    setSalaryList((prev) =>
+      prev.filter((_, i) => (i === deletingNumber ? false : true))
+    );
   }, [toDelete]);
 
   useEffect(() => {
     //Add values to the different arrays
     const lastCountry = selectedCountries.slice(-1).toString();
     if (toDelete) return;
+
     let filterData = data.filter((obj) =>
       selectedCountries.includes(obj.name.common)
     );
 
-    filterData.forEach((obj) => {
-      if (lastCountry === obj.name.common) {
-        setPopList([...popList, obj.population]);
-        setAreaList([...areaList, obj.area]);
-        setSalaryList([...salaryList, putSalaryOfCountry(lastCountry)]);
-      }
-    });
+    if (toDelete === "") {
+      filterData.forEach((obj) => {
+        if (lastCountry === obj.name.common) {
+          console.log("EXECUTED");
+          setPopList([...popList, obj.population]);
+          setAreaList([...areaList, obj.area]);
+          setSalaryList([...salaryList, putSalaryOfCountry(lastCountry)]);
+        }
+      });
+    }
   }, [selectedCountries]);
 
   return (
