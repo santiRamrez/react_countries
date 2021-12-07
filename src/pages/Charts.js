@@ -13,7 +13,6 @@ import FileCSV from "../data-csv/ocde.csv";
 function Charts({ dataAutocomplete }) {
   const [toDelete, setToDelete] = useState("");
   const [data, setData] = useState([]);
-  const [filterData, setFilterData] = useState([]);
   const [selectedCountries, setSelectedCountries] = useState([]);
   const [theParam, setTheParam] = useState("");
   const [salaryData, setSalaryData] = useState([]);
@@ -37,14 +36,6 @@ function Charts({ dataAutocomplete }) {
       setSalaryData(salaryD);
     };
     fetchSalaryData();
-
-    setFilterData(() => {
-      let output = data.filter((obj) => {
-        let country = obj.name.common;
-        return selectedCountries.includes(country);
-      });
-      return output;
-    });
   }, []);
 
   useEffect(() => {
@@ -54,15 +45,38 @@ function Charts({ dataAutocomplete }) {
       deletingNumber === i ? false : true
     );
     setSelectedCountries(newCountries);
+
+    setPopList((prev) => {
+      let output = prev.filter((val, i) =>
+        i === deletingNumber ? false : true
+      );
+      console.log("EXECUTED");
+      return output;
+    });
+    setAreaList((prev) => {
+      let output = prev.filter((val, i) =>
+        i === deletingNumber ? false : true
+      );
+      return output;
+    });
+    setSalaryList((prev) => {
+      let output = prev.filter((val, i) =>
+        i === deletingNumber ? false : true
+      );
+      return output;
+    });
   }, [toDelete]);
 
   useEffect(() => {
-    const lastCountry = selectedCountries.slice(-1).toString();
-
     //Add values to the different arrays
+    const lastCountry = selectedCountries.slice(-1).toString();
+    if (toDelete) return;
+    let filterData = data.filter((obj) =>
+      selectedCountries.includes(obj.name.common)
+    );
+
     filterData.forEach((obj) => {
       if (lastCountry === obj.name.common) {
-        console.log("Executed");
         setPopList([...popList, obj.population]);
         setAreaList([...areaList, obj.area]);
         setSalaryList([...salaryList, putSalaryOfCountry(lastCountry)]);
@@ -96,9 +110,11 @@ function Charts({ dataAutocomplete }) {
             }}
           />
           <FilterChart
-            data={data}
             countries={selectedCountries}
             param={theParam}
+            popList={popList}
+            areaList={areaList}
+            salaryList={salaryList}
           />
         </div>
       </div>
