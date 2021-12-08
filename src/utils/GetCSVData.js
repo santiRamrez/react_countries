@@ -43,6 +43,7 @@ const GetCSVData = async (file) => {
     if (objA.country.toLowerCase() < objB.country.toLowerCase()) return -1;
     if (objA.country.toLowerCase() === objB.country.toLowerCase()) return 0;
     if (objA.country.toLowerCase() > objB.country.toLowerCase()) return 1;
+    return 0;
   });
 
   return sortObjects;

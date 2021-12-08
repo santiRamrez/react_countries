@@ -4,6 +4,7 @@ const sortAlphabetAZ = (arr) => {
     if (a.name.common.toLowerCase() < b.name.common.toLowerCase()) return -1;
     if (a.name.common.toLowerCase() === b.name.common.toLowerCase()) return 0;
     if (a.name.common.toLowerCase() > b.name.common.toLowerCase()) return 1;
+    return 0;
   });
   return sorted;
 };

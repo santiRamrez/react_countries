@@ -5,6 +5,7 @@ import "./styles/ChartsPage.css";
 import SidebarFilter from "../components/SidebarFilter";
 import CountriesSelected from "../components/CountriesSelected";
 import FilterChart from "../components/FilterChart";
+import Footer from "../components/Footer";
 
 //CSV DATA:
 import GetCSVData from "../utils/GetCSVData";
@@ -36,7 +37,7 @@ function Charts({ dataAutocomplete }) {
       setSalaryData(salaryD);
     };
     fetchSalaryData();
-  }, []);
+  }, [dataAutocomplete]);
 
   useEffect(() => {
     if (toDelete === "") return;
@@ -110,6 +111,7 @@ function Charts({ dataAutocomplete }) {
           />
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

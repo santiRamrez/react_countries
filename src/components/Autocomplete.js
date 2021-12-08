@@ -49,7 +49,7 @@ const Autocomplete = ({ countryList, size, hasSelected = (f) => f }) => {
     setUserInput(val);
     setTimeout(() => {
       setFormatedSuggestions([]);
-    }, 900);
+    }, 2000);
   };
 
   const renderSuggestions = () => {

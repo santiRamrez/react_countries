@@ -52,3 +52,26 @@
   color: #fff;
   cursor: pointer;
 }
+.Navbar a:hover {
+  color: dodgerblue;
+}
+@media (max-width: 530px) {
+  .Header {
+    font-size: 14px;
+  }
+  .Logo {
+    width: 16em;
+  }
+  .Logo .container-svg {
+    width: 3em;
+    height: 3em;
+  }
+  .Logo h1 {
+    font-size: 1.4em;
+    margin-left: 0.4375em;
+    color: #fff;
+  }
+  .Navbar {
+    width: 10.5em;
+  }
+}
