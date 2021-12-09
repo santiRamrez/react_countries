@@ -1,15 +1,15 @@
 import React from "react";
-
-//React-router
-import { Link } from "react-router-dom";
-
 import "./styles/CountryCard.css";
 
-function CountryCard({ title, flag, xLink }) {
-  const formatName = (str) => str.replace(/\(.+\)/, "");
+import { Link } from "react-router-dom";
 
+//Components
+
+function CountryCard({ title, flag }) {
+  const formatName = (str) => str.replace(/\(.+\)/, "");
+  const leadTo = formatName(title);
   return (
-    <Link to={xLink} className="country-card">
+    <Link to={leadTo} className="country-card">
       <div className="container-img">
         <img src={flag} alt={title} />
       </div>

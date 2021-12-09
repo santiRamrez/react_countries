@@ -30,13 +30,15 @@ const SidebarFilter = ({
 
   return (
     <form onSubmit={handleSubmit} className="SidebarFilter">
-      <div className="selectCountry">
-        <Autocomplete
-          hasSelected={countrySelected}
-          countryList={justNames(listCountries)}
-          size={"13.5px"}
-        />
-      </div>
+      {listCountries && (
+        <div className="selectCountry">
+          <Autocomplete
+            hasSelected={countrySelected}
+            countryList={justNames(listCountries)}
+            size={"13.5px"}
+          />
+        </div>
+      )}
       <div className="compareSection">
         <div className="check-container">
           <input

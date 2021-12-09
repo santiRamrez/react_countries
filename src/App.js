@@ -34,18 +34,18 @@ function App() {
 
   return (
     <div className="App">
-      {!countriesData && <Loader />}
       <div className="img-bg"></div>
+      {!countriesData && <Loader />}
       <Header />
       <Switch>
         <Route exact path="/">
           <Home dataCountries={countriesData} />
         </Route>
-        <Route exact path="/country">
-          <Country />
-        </Route>
         <Route exact path="/charts">
           <Charts dataAutocomplete={countriesData} />
+        </Route>
+        <Route path="/:id">
+          <Country />
         </Route>
         <Route>
           <Error404 />
