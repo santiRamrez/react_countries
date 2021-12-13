@@ -17,62 +17,45 @@ function Country() {
       const [dataCountry] = await GetData(id);
       setData(dataCountry);
     };
-    fetchData();
-    setLoad(true);
+    fetchData().then(() => setLoad(true));
   }, []);
 
   const content = () => {
-    if (data) {
-      return (
-        <ul>
-          <li>
-            Capital:<span>{data.capital}</span>
-          </li>
-          <li>
-            Population:
-            <span>
-              {data.population
-                ? formatingNumbers(data.population)
-                : "...loading"}
-            </span>
-          </li>
-          <li>
-            Region:<span>{data.region}</span>
-          </li>
-          <li>
-            Area:
-            <span>
-              {data.area ? formatingNumbers(data.area) : "...loading"} Km2
-            </span>
-          </li>
-          <li>
-            Currency:
-            <span>
-              {data.currencies
-                ? FormatCurrency(data.currencies)[0]
-                : "...loading"}
-            </span>
-            <span>
-              {data.currencies
-                ? FormatCurrency(data.currencies)[1]
-                : "...loading"}
-            </span>
-          </li>
-        </ul>
-      );
-    } else {
-      <h1>No data</h1>;
-    }
-  };
-
-  const mainImage = () => {
-    if (data) {
-      return (
-        <img
-          src={data.flags.svg ? data.flags.svg : "https://flagcdn.com/pe.svg"}
-        />
-      );
-    }
+    return (
+      <ul>
+        <li>
+          Capital:<span>{data.capital}</span>
+        </li>
+        <li>
+          Population:
+          <span>
+            {data.population ? formatingNumbers(data.population) : "...loading"}
+          </span>
+        </li>
+        <li>
+          Region:<span>{data.region}</span>
+        </li>
+        <li>
+          Area:
+          <span>
+            {data.area ? formatingNumbers(data.area) : "...loading"} Km2
+          </span>
+        </li>
+        <li>
+          Currency:
+          <span>
+            {data.currencies
+              ? FormatCurrency(data.currencies)[0]
+              : "...loading"}
+          </span>
+          <span>
+            {data.currencies
+              ? FormatCurrency(data.currencies)[1]
+              : "...loading"}
+          </span>
+        </li>
+      </ul>
+    );
   };
 
   return (
@@ -82,10 +65,7 @@ function Country() {
       <div className="dataCountry-container">
         <div className="flagContainer">
           <div className="flagHere">
-            <img
-              src={load ? data.flags.svg : "https://flagcdn.com/pe.svg"}
-              alt={id}
-            />
+            <img src={load ? data.flags.svg : "...Loading"} alt={id} />
           </div>
         </div>
         <div className="dataContainer">{load ? content() : null}</div>
