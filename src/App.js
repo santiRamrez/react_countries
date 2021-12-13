@@ -22,12 +22,15 @@ import sortAlphabetAZ from "./utils/SortingData";
 
 function App() {
   const [countriesData, setCountriesData] = useState("");
+  const [countryList, setCountryList] = useState("");
   useEffect(() => {
     const fetchData = async () => {
       let data = await getData();
       //Sorting data from a -> z bellow
       let sorted = sortAlphabetAZ(data);
+      let list = sorted.map((obj) => obj.name.common);
       setCountriesData(sorted);
+      setCountryList(list);
     };
     fetchData();
   }, []);
@@ -44,11 +47,11 @@ function App() {
         <Route exact path="/charts">
           <Charts dataAutocomplete={countriesData} />
         </Route>
-        <Route path="/:id">
-          <Country />
-        </Route>
-        <Route>
+        <Route exact path="/about">
           <Error404 />
+        </Route>
+        <Route path="/:id">
+          <Country list={countryList} />
         </Route>
       </Switch>
     </div>
