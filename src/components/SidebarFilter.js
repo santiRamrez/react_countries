@@ -75,7 +75,7 @@ const SidebarFilter = ({
       <div className="caption-salary-container">
         {inpSalary.current && (
           <p>
-            The minimum wage was taken from OCDE database as PPP (Purchasing
+            The minimum wage was taken from OECD database as PPP (Purchasing
             Power Parities)
           </p>
         )}

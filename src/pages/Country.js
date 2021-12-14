@@ -14,17 +14,22 @@ import Error404 from "./404";
 function Country({ list }) {
   const [data, setData] = useState({});
   const [load, setLoad] = useState(false);
+  const [coords, setCoords] = useState("");
+
   let { id } = useParams();
   const country = list.includes(id) ? id : "There is not such a country";
 
   useEffect(() => {
-    if (country === "There is not such a country") return false;
     const fetchData = async () => {
       const [dataCountry] = await GetData(id);
       setData(dataCountry);
+      setCoords([...dataCountry.latlng]);
     };
-    fetchData().then(() => setLoad(true));
-  }, []);
+    fetchData();
+    fetchData().then(() => {
+      setLoad(true);
+    });
+  }, [id]);
 
   const content = () => {
     return (
@@ -77,7 +82,9 @@ function Country({ list }) {
           </div>
           <div className="dataContainer">{load ? content() : null}</div>
         </div>
-        <div className="mapContainer"></div>
+        <div className="mapContainer">
+          {load ? <Maps latLong={coords} /> : null}
+        </div>
       </div>
     );
   };

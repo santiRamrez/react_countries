@@ -19,7 +19,7 @@ const Footer = () => {
             target="_blank"
             rel="noreferrer"
           >
-            OCDE Database (Downloaded as a CSV file)
+            OECD Database (Downloaded as a CSV file)
           </a>
         </li>
       </ul>
