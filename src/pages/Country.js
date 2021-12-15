@@ -72,7 +72,7 @@ function Country({ list }) {
   const loadPage = () => {
     return (
       <div className="countryPage-container">
-        <h1>{country}</h1>
+        <h1>{country[0].toUpperCase() + country.slice(1)}</h1>
         {!load && <Loader />}
         <div className="dataCountry-container">
           <div className="flagContainer">

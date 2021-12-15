@@ -4,6 +4,8 @@ import ReactHtmlParser from "react-html-parser";
 
 import "./styles/Autocomplete.css";
 
+import { useLocation, Link } from "react-router-dom";
+
 const ResultsAutocomplete = ({ handleClick, text }) => {
   return (
     <li onClick={handleClick} className="result-autocomplete">
@@ -16,6 +18,8 @@ const Autocomplete = ({ countryList, size, hasSelected = (f) => f }) => {
   const [userInput, setUserInput] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [formatedSuggestions, setFormatedSuggestions] = useState([]);
+
+  let location = useLocation();
 
   const onTextChanged = (e) => {
     const input = e.target.value;
@@ -73,6 +77,32 @@ const Autocomplete = ({ countryList, size, hasSelected = (f) => f }) => {
     }, 100);
   };
 
+  const btnLink = () => {
+    return (
+      <Link className="auto-btn" to={userInput.toLowerCase()}>
+        Search
+      </Link>
+    );
+  };
+
+  const btnChart = () => {
+    return (
+      <button
+        className="auto-btn"
+        onClick={(e) => {
+          e.preventDefault();
+          if (countryList.includes(userInput)) {
+            hasSelected(userInput);
+          } else {
+            hasSelected("");
+          }
+        }}
+      >
+        Search
+      </button>
+    );
+  };
+
   return (
     <div className="auto-form" style={{ fontSize: size }}>
       <div className="autocomplete">
@@ -87,18 +117,7 @@ const Autocomplete = ({ countryList, size, hasSelected = (f) => f }) => {
         {renderSuggestions()}
       </div>
       <div className="cont-btn">
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            if (countryList.includes(userInput)) {
-              hasSelected(userInput);
-            } else {
-              hasSelected("");
-            }
-          }}
-        >
-          Search
-        </button>
+        {location.pathname === "/" ? btnLink() : btnChart()}
       </div>
     </div>
   );

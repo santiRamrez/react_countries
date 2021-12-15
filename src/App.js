@@ -28,7 +28,7 @@ function App() {
       let data = await getData();
       //Sorting data from a -> z bellow
       let sorted = sortAlphabetAZ(data);
-      let list = sorted.map((obj) => obj.name.common);
+      let list = sorted.map((obj) => obj.name.common.toLowerCase());
       setCountriesData(sorted);
       setCountryList(list);
     };

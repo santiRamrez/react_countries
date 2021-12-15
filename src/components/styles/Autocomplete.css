@@ -46,9 +46,10 @@
   border-bottom: 1.5px solid #ccc;
 }
 
-.cont-btn button {
+.cont-btn .auto-btn {
   outline: none;
   cursor: pointer;
+  text-decoration: none;
   background-color: #0071bc;
   border: 2px solid #0071bc;
   color: #fff;
@@ -56,14 +57,17 @@
   font-size: 1em;
   width: 100%;
   height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   transition: all 0.2s ease-out;
 }
 
-.cont-btn button:focus {
+.cont-btn .auto-btn:focus {
   border: 2px solid #fff;
 }
 
-.cont-btn button:hover {
+.cont-btn .auto-btn:hover {
   border: 2px solid #0071bc;
   color: #fff;
   background-color: dodgerblue;

@@ -32,7 +32,7 @@ const GetCSVData = async (file) => {
   let makeObjects = filterData.map((countryData, i) => {
     let arr = countryData.split(";");
     let output = {};
-    output.country = arr[1];
+    output.country = arr[1] === "Russian Federation" ? "Russia" : arr[1];
     let num = Number(arr[14]);
     output.salary = Math.round(num);
     output.period = arr[7];

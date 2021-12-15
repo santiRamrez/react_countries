@@ -5,9 +5,9 @@ import { Link } from "react-router-dom";
 
 //Components
 
-function CountryCard({ title, flag }) {
+function CountryCard({ title, flag, link }) {
   const formatName = (str) => str.replace(/\(.+\)/, "");
-  const leadTo = formatName(title);
+  const leadTo = formatName(link);
   return (
     <Link to={leadTo} className="country-card">
       <div className="container-img">

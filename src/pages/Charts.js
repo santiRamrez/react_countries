@@ -68,7 +68,6 @@ function Charts({ dataAutocomplete }) {
     if (toDelete === "") {
       filterData.forEach((obj) => {
         if (lastCountry === obj.name.common) {
-          console.log("EXECUTED");
           setPopList([...popList, obj.population]);
           setAreaList([...areaList, obj.area]);
           setSalaryList([...salaryList, putSalaryOfCountry(lastCountry)]);

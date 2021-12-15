@@ -10,7 +10,12 @@ class BoardCountries extends React.Component {
     return (
       <div className="board-countries">
         {this.props.dataCountryCards.map((country, i) => (
-          <CountryCard title={country[0]} flag={country[1]} key={i} />
+          <CountryCard
+            title={country[0]}
+            flag={country[1]}
+            key={i}
+            link={country[2]}
+          />
         ))}
       </div>
     );

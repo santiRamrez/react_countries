@@ -19,6 +19,7 @@
 .footerContainer ul li {
   list-style-type: none;
   color: #ffffff;
+  width: 600px;
 }
 .footerContainer ul li p {
   display: inline-flex;

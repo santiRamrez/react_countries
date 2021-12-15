@@ -6,7 +6,7 @@ import "./styles/Maps.css";
 const Maps = ({ latLong }) => {
   // create map
   useEffect(() => {
-    const executeLeaflet = (coords) => {
+    let executeLeaflet = (coords) => {
       var map = L.map("map").setView(coords, 5);
 
       L.tileLayer(
@@ -23,7 +23,7 @@ const Maps = ({ latLong }) => {
     };
 
     executeLeaflet(latLong);
-  });
+  }, [latLong]);
 
   return <div id="map"></div>;
 };
