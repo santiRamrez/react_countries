@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 //This allows me to use functions similar to innerHTML in plain JS
 import ReactHtmlParser from "react-html-parser";
 
@@ -20,6 +20,8 @@ const Autocomplete = ({ countryList, size, hasSelected = (f) => f }) => {
   const [formatedSuggestions, setFormatedSuggestions] = useState([]);
 
   let location = useLocation();
+
+  let inputEl = useRef(null);
 
   const onTextChanged = (e) => {
     const input = e.target.value;
@@ -46,10 +48,10 @@ const Autocomplete = ({ countryList, size, hasSelected = (f) => f }) => {
   };
 
   const onClickResults = (e) => {
-    const $input = document.querySelector("#userInput");
     let val = e.target.textContent;
-    $input.value = "";
-    $input.value = val;
+    inputEl.current.value = "";
+    inputEl.current.value = val;
+    console.log("you has selected", val);
     setUserInput(val);
     setFormatedSuggestions([]);
   };
@@ -72,12 +74,14 @@ const Autocomplete = ({ countryList, size, hasSelected = (f) => f }) => {
 
   const cleanSuggestions = () => {
     setTimeout(() => {
+      console.log("suggested has cleanned up");
       setSuggestions([]);
       setFormatedSuggestions([]);
-    }, 100);
+    }, 1000);
   };
 
   const btnLink = () => {
+    console.log("btnLink has rendered");
     return (
       <Link className="auto-btn" to={userInput.toLowerCase()}>
         Search
@@ -86,6 +90,7 @@ const Autocomplete = ({ countryList, size, hasSelected = (f) => f }) => {
   };
 
   const btnChart = () => {
+    console.log("btnChart has rendered");
     return (
       <button
         className="auto-btn"
@@ -110,6 +115,7 @@ const Autocomplete = ({ countryList, size, hasSelected = (f) => f }) => {
           onBlur={cleanSuggestions}
           autoComplete="off"
           id="userInput"
+          ref={inputEl}
           type="text"
           onChange={onTextChanged}
           placeholder="Country"
