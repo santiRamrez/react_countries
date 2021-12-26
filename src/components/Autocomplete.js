@@ -77,11 +77,10 @@ const Autocomplete = ({ countryList, size, hasSelected = (f) => f }) => {
       console.log("suggested has cleanned up");
       setSuggestions([]);
       setFormatedSuggestions([]);
-    }, 1000);
+    }, 1500);
   };
 
   const btnLink = () => {
-    console.log("btnLink has rendered");
     return (
       <Link className="auto-btn" to={userInput.toLowerCase()}>
         Search
@@ -90,7 +89,6 @@ const Autocomplete = ({ countryList, size, hasSelected = (f) => f }) => {
   };
 
   const btnChart = () => {
-    console.log("btnChart has rendered");
     return (
       <button
         className="auto-btn"
