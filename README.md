@@ -1,6 +1,22 @@
-# Getting Started with Create React App
+# This is my first functional web application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+I made this learning from:
+
+1. Books:
+
+- Eloquent JavaScript
+- Learning React Modern Patterns for Developing React Apps - O'Reilly editorial
+
+2. YouTube:
+
+- Jon Mircha // thanks a lot buddy!!
+- Platzi
+
+3. Last but not least...
+
+- The documentation of the libraries.
+
+Now it is time to see some backend stuff with NODE.js
 
 ## Available Scripts
 

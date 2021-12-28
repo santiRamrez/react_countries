@@ -1,4 +1,5 @@
 {
+  "homepage": "https://santiRamrez.github.io/react_countries",
   "name": "react_countries",
   "version": "0.1.0",
   "private": true,
@@ -41,6 +42,7 @@
     ]
   },
   "devDependencies": {
+    "gh-pages": "^3.2.3",
     "react-router-dom": "^5.2.0"
   }
 }
