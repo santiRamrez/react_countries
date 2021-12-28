@@ -21,7 +21,6 @@ import Error404 from "./pages/404";
 import sortAlphabetAZ from "./utils/SortingData";
 
 function App() {
-  const [load, setLoad] = useState(false);
   const [countriesData, setCountriesData] = useState("");
   const [countryList, setCountryList] = useState("");
   useEffect(() => {
@@ -34,7 +33,6 @@ function App() {
       setCountryList(list);
     };
     fetchData();
-    setTimeout(() => setLoad(true), 5000);
   }, []);
 
   return (
