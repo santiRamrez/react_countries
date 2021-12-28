@@ -21,16 +21,19 @@ const BoardCountries = ({ dataCountryCards }) => {
   };
 
   useEffect(() => {
-    console.log("Starting");
+    // console.log("Starting");
 
     return () => {
       setLoad(false);
-      console.log("closing");
+      setData([]);
+      setPage(0);
+      setGroup([]);
+      // console.log("closing");
     };
   }, []);
 
   useEffect(() => {
-    console.log("props");
+    // console.log("props");
     settingData();
   }, [dataCountryCards, load]);
 

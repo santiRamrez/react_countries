@@ -29,6 +29,12 @@ function Country({ list }) {
     fetchData().then(() => {
       setLoad(true);
     });
+
+    return () => {
+      setLoad(false);
+      setData([]);
+      setCoords([]);
+    };
   }, [id]);
 
   const content = () => {

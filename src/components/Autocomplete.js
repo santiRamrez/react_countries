@@ -51,7 +51,6 @@ const Autocomplete = ({ countryList, size, hasSelected = (f) => f }) => {
     let val = e.target.textContent;
     inputEl.current.value = "";
     inputEl.current.value = val;
-    console.log("you has selected", val);
     setUserInput(val);
     setFormatedSuggestions([]);
   };
@@ -74,10 +73,9 @@ const Autocomplete = ({ countryList, size, hasSelected = (f) => f }) => {
 
   const cleanSuggestions = () => {
     setTimeout(() => {
-      console.log("suggested has cleanned up");
       setSuggestions([]);
       setFormatedSuggestions([]);
-    }, 1500);
+    }, 2500);
   };
 
   const btnLink = () => {

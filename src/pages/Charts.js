@@ -3,9 +3,9 @@ import "./styles/ChartsPage.css";
 
 //Components
 import SidebarFilter from "../components/SidebarFilter";
+import Footer from "../components/Footer";
 import CountriesSelected from "../components/CountriesSelected";
 import FilterChart from "../components/FilterChart";
-import Footer from "../components/Footer";
 
 //CSV DATA:
 import GetCSVData from "../utils/GetCSVData";
