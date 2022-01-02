@@ -9,7 +9,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
+    <Router basename="/react-countries">
       <App />
     </Router>
   </React.StrictMode>,
