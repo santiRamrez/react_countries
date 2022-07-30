@@ -38,6 +38,7 @@ function Country({ list }) {
   }, [id]);
 
   const content = () => {
+    console.log(coords);
     return (
       <ul>
         <li>

@@ -2,7 +2,7 @@ const API = "https://restcountries.com/v3.1/";
 // const API = "https://restcountries.com/v3.1/region/europe";
 
 const getData = async (id) => {
-  let apiURl = id ? `${API}name/{${id}}` : `${API}all`;
+  let apiURl = id ? `${API}name/${id}` : `${API}all`;
 
   try {
     const response = await fetch(apiURl);
